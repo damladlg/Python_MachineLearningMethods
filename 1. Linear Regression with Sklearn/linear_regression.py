@@ -9,6 +9,8 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+import seaborn as sns # data visualization library
+import matplotlib.pyplot as plt
 
 data = pd.read_csv('student-mat.csv', sep=';')
 
@@ -16,6 +18,8 @@ data = pd.read_csv('student-mat.csv', sep=';')
 data = data[['G1','G2','G3','studytime','failures','absences','age']]
 
 print(data.head())
+
+sns.pairplot(data)
 
 print(data.dtypes)
 
@@ -26,15 +30,24 @@ X=np.array(data.drop('G3',axis=1))
 X_train, X_test, Y_train, Y_test=train_test_split(X,Y,test_size=0.2,random_state=2)
 
 # Is taken as an example from the class.
-linear=LinearRegression()
+model_linear=LinearRegression()
 
-linear.fit(X_train, Y_train) # Model builded.
+model_linear.fit(X_train, Y_train) # Model builded.
 
-linear.score(X_test,Y_test) # The performance of the model with test data and, the accuracy value is found.
-linear.score(X_train,Y_train) # With the train data, the model's performance and accuracy value are found.
+model_linear.score(X_test,Y_test) # The performance of the model with test data and, the accuracy value is found.
+model_linear.score(X_train,Y_train) # With the train data, the model's performance and accuracy value are found.
 
-print('Coefficients: \n', linear.coef_)
-print('Constant: ', linear.intercept_)
+print('Coefficients: \n', model_linear.coef_)
+print('Constant: ', model_linear.intercept_)
 
 new_data =np.array([[10,14,3,0,4,16]])
-print(linear.predict(new_data)) # Predicted for final grade with array.
+predict=(model_linear.predict(new_data))
+print(predict) # Predicted for final grade with array.
+
+predict=model_linear.predict(X_test)
+
+plt.scatter(Y_test, predict)
+print(Y_test)
+
+print(predict)
+plt.show()
