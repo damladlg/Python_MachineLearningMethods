@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[8]:
 
 
 from sklearn.model_selection import train_test_split
@@ -18,7 +18,7 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from math import sqrt
 from sklearn.ensemble import IsolationForest
 
-sensor = pd.read_csv("C:/Users/damla/OneDrive/Masaüstü/TUBITAK/5. CALIBRATİIN SENSORS MACHINE LEARNING/YHK1 22mart-8mayıs2022-GOSB.csv", sep = ';')
+sensor = pd.read_csv("C:/Users/damla/OneDrive/Masaüstü/TUBITAK/5. CALIBRATİIN SENSORS MACHINE LEARNING/YHK1_NO2_tumveriler.csv", sep = ';')
 
 df = pd.DataFrame({'NO2MTHM': sensor["NO2MTHM"], 'WEu_NO2_257': sensor["WEu_NO2_257"], 'Temperature': sensor["Temperature"], 'Humidity': sensor["Humidity"], 'AEu_NO2_257': sensor['AEu_NO2_257'], 'Pressure': sensor['Pressure'], 'WEu_O3_557': sensor['WEu_O3_557'], 'AEu_O3_557': sensor['AEu_O3_557']})
 
@@ -49,7 +49,7 @@ df_train = pd.DataFrame({'NO2MTHM': Y_train, 'WEu_NO2_257': X_train_iforest["WEu
 df_test = pd.DataFrame({'NO2MTHM': Y_test, 'WEu_NO2_257': X_test["WEu_NO2_257"], 'Temperature': X_test["Temperature"], 'Humidity': X_test["Humidity"], 'AEu_NO2_257': X_test["AEu_NO2_257"], 'Pressure': X_test["Pressure"], 'WEu_O3_557': X_test["WEu_O3_557"], 'AEu_O3_557': X_test["AEu_O3_557"]})
 
 
-# In[2]:
+# In[9]:
 
 
 from sklearn.linear_model import LinearRegression
@@ -79,7 +79,7 @@ plt.xticks(rotation = 20)
 sns.lmplot(x = 'NO2MTHM', y = 'MLR_Pred', data = df_test, fit_reg = True, line_kws = {'color': 'orange'}) 
 
 
-# In[3]:
+# In[10]:
 
 
 from sklearn.linear_model import Ridge
@@ -108,7 +108,7 @@ plt.xticks(rotation = 20)
 sns.lmplot(x = 'NO2MTHM', y = 'Ridge_Pred', data = df_test, fit_reg = True, line_kws = {'color': 'orange'}) 
 
 
-# In[4]:
+# In[11]:
 
 
 from sklearn.linear_model import ElasticNet
@@ -138,7 +138,7 @@ plt.xticks(rotation = 20)
 sns.lmplot(x = 'NO2MTHM', y = 'ElasticNet_Pred', data = df_test, fit_reg = True, line_kws = {'color': 'orange'}) 
 
 
-# In[8]:
+# In[12]:
 
 
 from sklearn.ensemble import RandomForestRegressor
@@ -173,7 +173,7 @@ plt.xticks(rotation = 20)
 sns.lmplot(x = 'NO2MTHM', y = 'RF_Pred', data = df_test, fit_reg = True, line_kws = {'color': 'orange'}) 
 
 
-# In[9]:
+# In[13]:
 
 
 from sklearn.preprocessing import PolynomialFeatures
@@ -201,7 +201,7 @@ df_test["MLR_pl_Pred"] = poly_reg_y_predicted
 sns.lmplot(x = 'NO2MTHM', y = 'MLR_pl_Pred', data = df_test, fit_reg = True, line_kws = {'color': 'orange'}) 
 
 
-# In[10]:
+# In[14]:
 
 
 from sklearn.tree import DecisionTreeRegressor
